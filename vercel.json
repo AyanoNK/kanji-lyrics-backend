@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "kanji_lyrics_backend/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "kanji_lyrics_backend/wsgi.py"
+    }
+  ]
+}
