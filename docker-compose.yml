@@ -1,0 +1,22 @@
+version: "2"
+services:
+  rabbitmq:
+    image: rabbitmq:3.6.6
+    ports:
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=mypass
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: madefire/chordtest
+    command: ["celery", "worker", "-A", "app.app", "-l", "info"]
+    environment:
+      - BROKER_URL=amqp://admin:mypass@rabbitmq:5672//
+      - C_FORCE_ROOT=true
+    volumes:
+      - ./:/app/
+    depends_on:
+      - rabbitmq
