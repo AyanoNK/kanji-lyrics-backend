@@ -1,2 +1,2 @@
 # kanji-lyrics-backend
-Server that consumes that lets you practice Kanji with music lyrics.
+Server that lets you practice Kanji with music lyrics.
